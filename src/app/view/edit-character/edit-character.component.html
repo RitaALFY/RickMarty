@@ -1,0 +1,8 @@
+<app-character-form
+  *ngIf="characterToUpdate"
+  name="MODIFIER"
+  labelBtn="MODIFIER"
+  (formSubmitted)="onHandleFormSubmitted($event)"
+  [characterToUpdate]="characterToUpdate"></app-character-form>
+
+

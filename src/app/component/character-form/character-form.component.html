@@ -1,0 +1,33 @@
+<div class="row col-6 card shadow mx-auto mt-3">
+
+  <h3 class="text-center mt-3">{{name}}</h3>
+
+  <form [formGroup]="characterForm" (ngSubmit)="onSubmitForm()" class="my-3">
+
+    <div class="mb-3">
+      <label for="name">nom de personnage</label>
+      <input id="name" formControlName="name" class="form-control" placeholder="name">
+    </div>
+    <div class="mb-3">
+      <label for="species">species:</label>
+      <input id="species" formControlName="species" class="form-control" placeholder="species">
+    </div>
+    <div class="mb-3">
+      <label for="image"> Image:</label>
+      <input id="image" formControlName="image" class="form-control" placeholder="image">
+    </div>
+    <div class="mb-3">
+      <label for="episode"> Episode:</label>
+      <input id="episode" formControlName="episode" class="form-control" placeholder="episode">
+    </div>
+    <button type="submit" class="d-grid col-4 mx-auto btn btn-dark" [disabled]="characterForm.invalid">
+      {{labelBtn}}
+    </button>
+  </form>
+
+  <a routerLink="/" class="text-center text-dark mb-2">
+    RETOUR
+  </a>
+
+</div>
+

@@ -1,0 +1,24 @@
+<div *ngIf="character$ | async as character" class="container">
+  <div class="row justify-content-center mt-5">
+    <div class="col-8 card shadow">
+      <div class="card-body text-center">
+        <h5 class="card-title"> <i><b>{{ character.name }}</b> </i>- # {{character.id}}</h5>
+        <p class="card-text"> {{ character.species }}</p>
+<!--        <p class="card-text"> {{ character.status }} </p>-->
+
+        <img [src]="character.image" class="card-img-top" alt="character image">
+      </div>
+      <p class="card-text"> <b>Episodes :</b> {{ character.episode }}</p>
+    </div>
+    <div class="card-footer text-center">
+    <a  [routerLink]="['/','character', character.id,'edit']" class="btn btn-warning text-uppercase"> Modifier</a>
+<!--      <button icon=" pi pi-trash "class="btn btn-outline-danger text-uppercase" (click)="deleteCharacter(character)"> Supprimer</button>-->
+
+    </div>
+  </div>
+
+</div>
+<div class="card-footer text-center">
+
+  <button routerLink="/" class="btn btn-dark">Back</button>
+</div>

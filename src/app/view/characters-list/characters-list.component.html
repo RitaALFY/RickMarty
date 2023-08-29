@@ -1,0 +1,19 @@
+
+<div class="my-2">
+  <a
+    routerLink="/character/new"
+    class="btn btn-success mx-1">Nouveau character</a>
+     </div>
+<div class="row mt-5">
+  <div class="col-md-4 " *ngFor="let character of characters$ | async">
+    <div class="card mb-4 rounded-3" style="width: 18rem;">
+      <img  src="{{character.image}}" class="card-img-top rounded-3 shadow-lg" alt="charcter Image">
+      <div class="card-body text-center ">
+        <h5 class="card-title">{{character.name}} {{character.id}}</h5>
+        <p class="card-text">{{character.species}}</p>
+        <a [routerLink]="['/', 'character', character.id]" class="btn btn-outline-info text-uppercase">Voir détails</a>
+      </div>
+    </div>
+  </div>
+</div>
+

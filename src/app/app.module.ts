@@ -4,23 +4,38 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './component/header/header.component';
-import { PersonnagesListComponent } from './view/personnages-list/personnages-list.component';
 import { EpisodesListComponent } from './view/episodes-list/episodes-list.component';
 import { NotFoundComponent } from './view/not-found/not-found.component';
-import { PersonnageDetailsComponent } from './view/personnage-details/personnage-details.component';
+import { CharacterDetailsComponent } from './view/character-details/character-details.component';
+import { CharactersListComponent } from './view/characters-list/characters-list.component';
+import {HttpClientModule} from "@angular/common/http";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { LoginComponent } from './view/login/login.component';
+import { ProfileComponent } from './view/profile/profile.component';
+import { AddCharacterComponent } from './view/add-character/add-character.component';
+import { EditCharacterComponent } from './view/edit-character/edit-character.component';
+import { CharacterFormComponent } from './component/character-form/character-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    PersonnagesListComponent,
     EpisodesListComponent,
     NotFoundComponent,
-    PersonnageDetailsComponent
+    CharacterDetailsComponent,
+    CharactersListComponent,
+    LoginComponent,
+    ProfileComponent,
+    AddCharacterComponent,
+    EditCharacterComponent,
+    CharacterFormComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

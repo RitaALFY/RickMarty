@@ -1,1 +1,9 @@
-<p>episodes-list works!</p>
+<ul class="list-group list-group-item-success text-center link-body-emphasis">
+  <h2>Liste de Episodes</h2>
+  <li *ngFor=" let episode of episodes$ | async"
+
+      class="list-group-item">
+    <a [routerLink]="['/', 'episode', episode]">{{episode}}</a>
+  </li>
+</ul>
+
