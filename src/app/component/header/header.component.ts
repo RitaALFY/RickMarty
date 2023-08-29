@@ -2,13 +2,14 @@ import {Component, OnInit} from '@angular/core';
 import {map, Observable} from "rxjs";
 import {AuthService} from "../../service/auth/auth.service";
 import {Router} from "@angular/router";
+import {Character} from "../../model/character.model";
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent  implements OnInit {
 
   isConnected$!: Observable<boolean>
 
@@ -26,6 +27,5 @@ export class HeaderComponent implements OnInit {
     this.authService.logout()
     this.router.navigateByUrl('/login')
   }
-
-
 }
+

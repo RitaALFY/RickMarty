@@ -6,18 +6,20 @@ import {CharacterDetailsComponent} from "./view/character-details/character-deta
 import {EpisodesListComponent} from "./view/episodes-list/episodes-list.component";
 import {AddCharacterComponent} from "./view/add-character/add-character.component";
 import {EditCharacterComponent} from "./view/edit-character/edit-character.component";
+import {LoginComponent} from "./view/login/login.component";
+import {authGuard} from "./guard/auth/auth.guard";
 
 const routes: Routes = [
+
   { path: '', pathMatch: 'full', redirectTo: 'character' },
-  { path: 'character', children: [
+  { path: 'login', component: LoginComponent },
+  { path: 'character', canActivate: [authGuard], children: [
       { path: '', component: CharactersListComponent },
       { path: 'new', component: AddCharacterComponent },
-      {
-        path: 'episode', children: [
+      { path: 'episode', canActivate: [authGuard], children: [ // Appliquer AuthGuard ici aussi
           { path: '', component: EpisodesListComponent },
-          { path: ':name', component: CharactersListComponent },
-        ]
-      },
+          { path: ':name', component: CharactersListComponent }
+        ]},
       { path: ':id', children: [
           { path: '', component: CharacterDetailsComponent },
           { path: 'edit', component: EditCharacterComponent }
@@ -26,7 +28,6 @@ const routes: Routes = [
   { path: 'not-found', component: NotFoundComponent },
   { path: '**', redirectTo: 'not-found' }
 ];
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
