@@ -1,10 +1,31 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {map, Observable} from "rxjs";
+import {AuthService} from "../../service/auth/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
+
+  isConnected$!: Observable<boolean>
+
+  constructor (private authService: AuthService, private router: Router) {
+  }
+
+  ngOnInit () {
+    this.isConnected$ = this.authService.token$
+      .pipe(
+        map(token => Boolean(token))
+      )
+  }
+
+  onClickLogout () {
+    this.authService.logout()
+    this.router.navigateByUrl('/login')
+  }
+
 
 }
