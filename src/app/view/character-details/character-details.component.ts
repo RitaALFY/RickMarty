@@ -31,15 +31,6 @@ export class CharacterDetailsComponent  implements OnInit {
 
 
 
-
-
-
-
-
-
-
-
-
 }
 
 

@@ -81,29 +81,9 @@ export class CharacterService {
     )
   }
 
-  deleteCharacter(id: number): Observable<void> {
-    const url = `${this.baseApiUrl}/character/${id}`;
-    return this.http.delete<void>(url);
-  }
 
-  getAllByEpisode(episode: Episode): Promise<Character[]> {
-    return firstValueFrom(
-      this.http
-        .get <{ characters: CharacterHttp[] }>(this.baseApiUrl + 'character/episode/' + episode)
-        .pipe(
-          map(response => {
-            const characterHttpObj = response.characters;
-            console.log('CharacterHttpObj  by Episode:', characterHttpObj);
-            return characterHttpObj.map(characterHttp => Character.fromCharacterHttpToCharacter(characterHttp));
-          })
-        )
-    )
-  }
 
-  deleteCharacterById(id: number): Observable<void> {
-    const url = `${this.baseApiUrl}character/${id}`;
-    return this.http.delete<void>(url);
-  }
+
 
   add(newCharacter: Omit<Character, "id">): Promise<void> {
     return new Promise(
@@ -115,19 +95,15 @@ export class CharacterService {
           id = lastCharacter.id + 1
         }
 
-        // J'ajoute l'ID
         const newCharacterWithId = {
           id,
           ...newCharacter
         }
 
-        // Je push dans mon tableau temporaire
         characters.push(newCharacterWithId)
 
-        // Je push le nouveau tableau à jour dans le tuyau
         this.charactersSubject$.next(characters)
 
-        // Je résous en success la promesse
         res()
       }
     )

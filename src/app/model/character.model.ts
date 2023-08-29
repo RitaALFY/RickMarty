@@ -20,6 +20,7 @@ export interface Character{
 
 
 
+
 }
 export namespace Character {
   export function fromCharacterHttpToCharacter(characterHttp: CharacterHttp): Character {

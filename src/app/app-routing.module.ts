@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'character', canActivate: [authGuard], children: [
       { path: '', component: CharactersListComponent },
       { path: 'new', component: AddCharacterComponent },
-      { path: 'episode', canActivate: [authGuard], children: [ // Appliquer AuthGuard ici aussi
+      { path: 'episode', canActivate: [authGuard], children: [
           { path: '', component: EpisodesListComponent },
           { path: ':name', component: CharactersListComponent }
         ]},
