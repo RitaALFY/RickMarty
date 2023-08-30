@@ -15,6 +15,7 @@ import { ProfileComponent } from './view/profile/profile.component';
 import { AddCharacterComponent } from './view/add-character/add-character.component';
 import { EditCharacterComponent } from './view/edit-character/edit-character.component';
 import { CharacterFormComponent } from './component/character-form/character-form.component';
+import { PaginationComponent } from './component/pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { CharacterFormComponent } from './component/character-form/character-for
     ProfileComponent,
     AddCharacterComponent,
     EditCharacterComponent,
-    CharacterFormComponent
+    CharacterFormComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,

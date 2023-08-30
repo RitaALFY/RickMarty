@@ -3,7 +3,7 @@
     <input class="border-success-subtle rounded-3 shadow p-1 " type="text" [ngModel]="searchTerm$.value" (ngModelChange)="searchTerm$.next($event)" (keyup)="applyFilter()" placeholder="Rechercher par nom" style="width: 300px;">
   </div>
 
-  <div class="my-2">
+  <div class="  my-2">
     <a routerLink="/character/new" class="btn btn-success mx-1 shadow">Nouveau character</a>
   </div>
 </div>
@@ -26,6 +26,17 @@
       <div class="card-body text-center ">
         <h5 class="card-title">{{character.name}} {{character.id}}</h5>
         <p class="card-text">{{character.species}}</p>
+<!--   ICI j'ai try de changer le bg color selon la status mais ...
+<div class="mt-2">-->
+<!--          <span class="font-semibold">Status:</span>-->
+<!--          <section-->
+<!--            class="status ml-1 indicator-item badge badge-sm {{-->
+<!--              getBadgeStatusColor(character)-->
+<!--            }}"-->
+<!--          >-->
+<!--            {{ character.status }}-->
+<!--          </section>-->
+<!--        </div>-->
         <p class="card-text text-bg-success bg-opacity-75 rounded-3 text-center mb-2 " style="max-width: 50%; margin: 2px auto;">{{character.status}}</p>
         <a [routerLink]="['/', 'character', character.id]" class="btn btn-outline-info text-uppercase mr-2">Voir détails</a>
               <button icon=" pi pi-trash " class="btn btn-outline-danger text-uppercase " (click)="deleteCharacter(character)"> <i class="pi pi-trash"></i> Supprimer</button>
@@ -34,4 +45,8 @@
     </div>
   </div>
 </div>
+<app-pagination
+  [actualPage]="currentPage"
+  (actualPageEmitter)="changePage($event)"
+></app-pagination>
 

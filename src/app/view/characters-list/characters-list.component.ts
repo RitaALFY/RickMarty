@@ -14,8 +14,20 @@ export class CharactersListComponent implements OnInit {
   characters$!: Promise<Character[]>;
   filteredCharacters: Character[] = [];
   searchTerm$: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  currentPage: number = 1; // Page actuelle
+
 
   constructor(private charactersService: CharacterService, private route: ActivatedRoute) {}
+  // getBadgeStatusColor (character: Character): string {
+  //   switch (character.status) {
+  //     case 'Alive':
+  //       return 'badge-success'
+  //     case 'Dead':
+  //       return 'badge-error'
+  //     default:
+  //       return 'badge-warning'
+  //   }
+  // }
 
   ngOnInit() {
     const episode = this.route.snapshot.paramMap.get('name');
@@ -37,9 +49,14 @@ export class CharactersListComponent implements OnInit {
         character.name.toLowerCase().includes(this.searchTerm$.value.toLowerCase())
       );
     });
+
   }
 
-
+  loadCharacters(): void {
+    this.charactersService.getAll(this.currentPage).then(characters => {
+      this.filteredCharacters = characters;
+    });
+  }
 
   deleteCharacter(character: Character) {
     this.charactersService.deleteCharacterById(character.id).subscribe(() => {
@@ -47,10 +64,19 @@ export class CharactersListComponent implements OnInit {
     });
   }
 
-  private async loadCharacters() {
-    const characters = await this.characters$;
-    this.filteredCharacters = characters;
+  changePage(newPage: number) {
+    this.currentPage = newPage;
+    // Recharger les personnages avec le nouveau numéro de page
+    this.loadCharacters();
   }
+
+  // private async loadCharacters() {
+  //   const characters = await this.characters$;
+  //   this.filteredCharacters = characters;
+  // }
+
+
+
 
 
   // deleteCharacter(character: Character) {
@@ -69,5 +95,8 @@ export class CharactersListComponent implements OnInit {
   //   }
   // }
 
-
+  // changePage(newPage: number) {
+  //   this.currentPage = newPage;
+  //   this.loadCharacters();
+  // }
 }

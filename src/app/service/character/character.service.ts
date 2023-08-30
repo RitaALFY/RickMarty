@@ -11,6 +11,7 @@ import {Episode} from "../../model/episode.model";
 export class CharacterService {
 
   private baseApiUrl: string
+
   private charactersSubject$: BehaviorSubject<Character[]>
   characters$: Observable<Character[]>
 
@@ -27,15 +28,16 @@ export class CharacterService {
     return this.charactersSubject$.value.map(character => ({...character}));
   }
 
-  getAll(): Promise<Character[]> {
+  getAll(page: number = 1): Promise<Character[]> {
+    const url = `${this.baseApiUrl}character/?page=${page}`;
     return firstValueFrom(
-      this.http
-        .get<{ results: CharacterHttp[] }>(this.baseApiUrl + 'character')
+      this.http.get<{ results: CharacterHttp[] }>(url)
         .pipe(
-          map(res => res.results.map(characterHttp => Character.fromCharacterHttpToCharacter(characterHttp)))
+          map(response => response.results.map(characterHttp => Character.fromCharacterHttpToCharacter(characterHttp)))
         )
-    )
+    );
   }
+
 
 
 
@@ -98,10 +100,10 @@ export class CharacterService {
     )
       }
 
-  getAllByEpisode(episode: string): Promise<Character[]> {
+  getAllByEpisode(episodeName: string): Promise<Character[]> {
     return firstValueFrom(
   this.http
-    .get<{ characters: CharacterHttp[] }>(this.baseApiUrl + '/episode' + episode)
+    .get<{ characters: CharacterHttp[] }>(this.baseApiUrl + '/episode' + episodeName)
     .pipe(
       map(response => {
         const characterHttpArray = response.characters;
@@ -119,6 +121,29 @@ export class CharacterService {
     return this.http.delete<void>(url);
   }
 
+  // getAllByEpisodeWithPage(episode: string, page: number): Promise<Character[]> {
+  //   const url = `${this.baseApiUrl}/episode/${episode}?page=${page}`;
+  //
+  //   return firstValueFrom(
+  //     this.http.get<{ characters: CharacterHttp[] }>(url).pipe(
+  //       map(response => {
+  //         const characterHttpArray = response.characters;
+  //         return characterHttpArray.map(characterHttp => Character.fromCharacterHttpToCharacter(characterHttp));
+  //       })
+  //     )
+  //   );
+  // }
+
+
+  // getAllWithPage(page: number): Promise<Character[]> {
+  //   const url = `${this.baseApiUrl}/character?page=${page}`;
+  //
+  //   return firstValueFrom(
+  //     this.http.get<{ results: CharacterHttp[] }>(url).pipe(
+  //       map(res => res.results.map(characterHttp => Character.fromCharacterHttpToCharacter(characterHttp)))
+  //     )
+  //   );
+  // }
 }
 
 
