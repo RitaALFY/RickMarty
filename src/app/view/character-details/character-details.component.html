@@ -10,15 +10,21 @@
 
         <img [src]="character.image" class="card-img-top" alt="character image">
       </div>
-      <p class="card-text"> <b>Episodes :</b> {{ character.episode }}</p>
-    </div>
+      <ul>
+        <li *ngFor="let episodeUrl of character.episode">
+          <strong>Episode: </strong>
+          <a href="#" (click)="loadEpisodeDetails(episodeUrl.url)">
+            {{ episodeUrl }}
+          </a>
+        </li>
+      </ul>
+
     <div class="card-footer text-center">
     <a  [routerLink]="['/','character', character.id,'edit']" class="btn btn-warning text-uppercase"> Modifier</a>
 
     </div>
-  </div>
 
-</div>
+
 <div class="card-footer text-center">
 
   <button routerLink="/" class="btn btn-dark">Back</button>

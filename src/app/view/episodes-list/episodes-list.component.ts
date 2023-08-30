@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Episode} from "../../model/episode.model";
 import {EpisodeService} from "../../service/episode/episode.service";
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-episodes-list',
@@ -15,6 +17,8 @@ ngOnInit() {console.log('toto')
   this.episodes$= this.episodeService.getAll()
 
 }
+
+
 
 
 }

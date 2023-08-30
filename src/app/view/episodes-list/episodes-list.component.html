@@ -3,7 +3,7 @@
   <li *ngFor=" let episode of episodes$ | async"
 
       class="list-group-item">
-    <a [routerLink]="['/', 'episode', episode]">{{episode}}</a>
+    <a [routerLink]="['/', 'episode', episode]">{{episode.name}}</a>
   </li>
 </ul>
 

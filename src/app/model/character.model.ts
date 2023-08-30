@@ -1,47 +1,39 @@
-import {Episode, EpisodeHttp} from "./episode.model";
+import { Episode, EpisodeHttp } from "./episode.model";
 
-export  interface CharacterHttp{
-  id: number,
-  name: string,
-  species: string,
-  image: string,
-  type:string,
-  gender: string,
-  status: string,
-  episode: EpisodeHttp
-
-
+export interface CharacterHttp {
+  id: number;
+  name: string;
+  species: string;
+  image: string;
+  type: string;
+  gender: string;
+  status: string;
+  episode: EpisodeHttp[];
 }
-export interface Character{
-  id: number,
-  name: string,
-  species: string,
-  image: string,
-  type:string,
-  gender: string,
-  status: string,
-  episode: string[]
 
-
-
-
-
+export interface Character {
+  id: number;
+  name: string;
+  species: string;
+  image: string;
+  type: string;
+  gender: string;
+  status: string;
+  episode: Episode[]; // Utilisez le modèle Episode ici
 }
+
 export namespace Character {
   export function fromCharacterHttpToCharacter(characterHttp: CharacterHttp): Character {
-
     return {
       id: characterHttp.id,
       name: characterHttp.name,
       species: characterHttp.species,
       image: characterHttp.image,
-      type:characterHttp.type,
+      type: characterHttp.type,
       gender: characterHttp.gender,
       status: characterHttp.status,
-
-
-      episode: Episode.fromEpisodeHttpToEpisode(characterHttp.episode),
-    }
+      episode: characterHttp.episode.map(episodeHttp => Episode.fromEpisodeHttpToEpisode(episodeHttp))
+    };
   }
 
   export function generateExemplesCharacter(): Character[] {
@@ -54,10 +46,19 @@ export namespace Character {
         image: `Character: ${i}.jpg`,
         type: `Character: ${i}`,
         gender: `Character: ${i}`,
-        status:`Character: ${i}`,
-        episode: [`https://rickandmortyapi.com/api/episode/${i}`]
+        status: `Character: ${i}`,
+        episode: [
+          {
+            id: i,
+            name: `Episode: ${i}`,
+            air_date: `Air Date: ${i}`,
+            episode: `Episode: ${i}`,
+            url:`Episode: ${i}`
+          }
+        ]
       });
     }
+
     return characters;
   }
 }

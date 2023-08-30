@@ -30,7 +30,10 @@ export class CharacterDetailsComponent  implements OnInit {
   }
 
 
+  loadEpisodeDetails(episodeUrl: string): Observable<any> {
+    return this.http.get(episodeUrl);
 
+  }
 }
 
 
