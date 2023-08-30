@@ -14,6 +14,12 @@ export class CharacterFormComponent implements OnInit{
 
   @Output() formSubmitted: EventEmitter<Omit<Character, 'id'>> = new EventEmitter<Omit<Character, 'id'>>()
   characterForm!: FormGroup
+  statusOptions = [
+    { label: 'Alive', value: 'alive' },
+    { label: 'Dead', value: 'dead' },
+    { label: 'Unknown', value: 'unknown' }
+  ];
+
   constructor( private  fb: FormBuilder) {
   }
   ngOnInit() {
@@ -30,7 +36,7 @@ this.characterForm = this.fb.group({
   type:[this.characterToUpdate?.type || '', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
 
   gender:[this.characterToUpdate?.gender || '', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
-  status:[this.characterToUpdate?.status || '', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+  status:[this.characterToUpdate?.status || '', [Validators.required]],
 
 
 })

@@ -20,6 +20,19 @@
       <label for="episode"> Episode:</label>
       <input id="episode" formControlName="episode" class="form-control" placeholder="episode">
     </div>
+    <div class="mb-3">
+      <label> Status:</label>
+      <div *ngFor="let statusOption of statusOptions">
+        <label class="radio-label">
+          <input type="radio" [formControlName]="statusOption.value">
+          {{ statusOption.label }}
+        </label>
+      </div>
+    </div>
+    <div class="mb-3">
+    <label for="gender"> Gender:</label>
+    <input id="gender" formControlName="gender" class="form-control" placeholder="gender">
+  </div>
     <button type="submit" class="d-grid col-4 mx-auto btn btn-dark" [disabled]="characterForm.invalid">
       {{labelBtn}}
     </button>

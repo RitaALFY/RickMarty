@@ -13,7 +13,7 @@ export class EpisodesListComponent implements OnInit{
 episodes$!: Promise<Episode[]>
 constructor(private episodeService: EpisodeService) {
 }
-ngOnInit() {console.log('toto')
+ngOnInit() {
   this.episodes$= this.episodeService.getAll()
 
 }

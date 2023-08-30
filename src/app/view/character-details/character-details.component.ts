@@ -30,7 +30,8 @@ export class CharacterDetailsComponent  implements OnInit {
   }
 
 
-  loadEpisodeDetails(episodeUrl: string): Observable<any> {
+  loadEpisodeDetails(episode: Episode): Observable<any> {
+    const episodeUrl = episode.url;
     return this.http.get(episodeUrl);
 
   }
