@@ -1,11 +1,26 @@
+<div class="d-flex justify-content-between align-items-center">
+  <div class="search-bar me-2 mt-3">
+    <input class="border-success-subtle rounded-3 shadow p-2" type="text" [ngModel]="searchTerm$.value" (ngModelChange)="searchTerm$.next($event)" (keyup)="applyFilter()" placeholder="Rechercher par nom" style="width: 300px;">
+  </div>
 
-<div class="my-2">
-  <a
-    routerLink="/character/new"
-    class="btn btn-success mx-1">Nouveau character</a>
-     </div>
+  <div class="my-2">
+    <a routerLink="/character/new" class="btn btn-success mx-1">Nouveau character</a>
+  </div>
+</div>
+
+<!--<div *ngFor="let character of filteredCharacters">-->
+<!--  <div>{{ character.name }}</div>-->
+<!--</div>-->
+
+<!--<div class="my-2">-->
+<!--  <input-->
+<!--    type="text"-->
+<!--    placeholder="Filter le tableau"-->
+<!--    data-type="text"-->
+<!--    (input)="onInputChange($event)"-->
+<!--  />-->
 <div class="row mt-5">
-  <div class="col-md-4 " *ngFor="let character of characters$ | async">
+  <div class="col-md-4 " *ngFor="let character of filteredCharacters">
     <div class="card mb-4 rounded-3" style="width: 18rem;">
       <img  src="{{character.image}}" class="card-img-top rounded-3 shadow-lg" alt="charcter Image">
       <div class="card-body text-center ">

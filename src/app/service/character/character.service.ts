@@ -37,19 +37,8 @@ export class CharacterService {
     )
   }
 
-  // getAllByEpisode(episode: Episode): Promise<Character[]> {
-  //   return firstValueFrom(
-  //     this.http
-  //       .get<{ CharacterHttp[] }>(this.baseApiUrl + 'character/episode/' + episode)
-  //       .pipe(
-  //         map(characterHttp => characterHttp.map(characterHttp => Character.fromCharacterHttpToCharacter(characterHttp)))
-  //           const characterHttpArray = response.characters;
-  //           console.log('CharacterHttpArray by Episode:', characterHttpArray);
-  //           return characterHttpArray.map(characterHttp => Character.fromCharacterHttpToCharacter(characterHttp));
-  //         })
-  //       )
-  //   )
-  // }
+
+
 
 
   getById(characterId: number): Promise<Character> {

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {map, Observable} from "rxjs";
+import {BehaviorSubject, map, Observable} from "rxjs";
 import {AuthService} from "../../service/auth/auth.service";
 import {Router} from "@angular/router";
 import {Character} from "../../model/character.model";
@@ -10,22 +10,31 @@ import {Character} from "../../model/character.model";
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent  implements OnInit {
+  searchTerm: string = '';
+
 
   isConnected$!: Observable<boolean>
 
-  constructor (private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router) {
   }
 
-  ngOnInit () {
+  ngOnInit() {
     this.isConnected$ = this.authService.token$
       .pipe(
         map(token => Boolean(token))
       )
   }
 
-  onClickLogout () {
+  onClickLogout() {
     this.authService.logout()
     this.router.navigateByUrl('/login')
   }
-}
 
+  // onInputChange(e: any) {
+  //   if (e.target.dataset.type === 'text') {
+  //     this.searchText$.next(e.target.value)
+  //
+  //   }
+  // }
+
+}
