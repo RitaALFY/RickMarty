@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {Environment} from "../../environment/environment";
 import {HttpClient} from "@angular/common/http";
 import {Character, CharacterHttp} from "../../model/character.model";
-import {BehaviorSubject, firstValueFrom, map, Observable} from "rxjs";
+import {BehaviorSubject, firstValueFrom, map, Observable, of} from "rxjs";
 import {Episode} from "../../model/episode.model";
 
 @Injectable({
@@ -108,6 +108,27 @@ export class CharacterService {
       }
     )
       }
+
+  getAllByEpisode(episode: string): Promise<Character[]> {
+    return firstValueFrom(
+  this.http
+    .get<{ characters: CharacterHttp[] }>(this.baseApiUrl + '/episode' + episode)
+    .pipe(
+      map(response => {
+        const characterHttpArray = response.characters;
+        console.log('CharacterHttp Array by Episode:', characterHttpArray);
+        return characterHttpArray.map(characterHttp => Character.fromCharacterHttpToCharacter(characterHttp));
+      })
+    )
+    )
+  }
+
+  deleteCharacterById(id: number): Observable<void> {
+    console.log(`Personnage avec l'ID ${id} supprimé.`);
+
+    const url = `${this.baseApiUrl}/character/${id}`;
+    return this.http.delete<void>(url);
+  }
 
 }
 

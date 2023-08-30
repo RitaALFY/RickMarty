@@ -11,7 +11,9 @@
       <div class="card-body text-center ">
         <h5 class="card-title">{{character.name}} {{character.id}}</h5>
         <p class="card-text">{{character.species}}</p>
-        <a [routerLink]="['/', 'character', character.id]" class="btn btn-outline-info text-uppercase">Voir détails</a>
+        <a [routerLink]="['/', 'character', character.id]" class="btn btn-outline-info text-uppercase mr-2">Voir détails</a>
+              <button icon=" pi pi-trash " class="btn btn-outline-danger text-uppercase " (click)="deleteCharacter(character)"> <i class="pi pi-trash"></i> Supprimer</button>
+
       </div>
     </div>
   </div>

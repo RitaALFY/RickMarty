@@ -16,12 +16,28 @@ export class CharactersListComponent implements OnInit{
   }
   ngOnInit() {
 
-      this.characters$ = this.charactersService.getAll()
+    const episode = this.route.snapshot.paramMap.get('name');
 
-
+    if (episode) {
+      this.characters$ = this.charactersService.getAllByEpisode(episode);
+    } else {
+      this.characters$ = this.charactersService.getAll();
+    }
   }
 
+  deleteCharacter(character: Character) {
+    this.charactersService.deleteCharacterById(character.id).subscribe(() => {
+      this.loadCharacters();
+    });
+  }
 
+  private loadCharacters() {
+    const episode = this.route.snapshot.paramMap.get('name');
 
-
+    if (episode) {
+      this.characters$ = this.charactersService.getAllByEpisode(episode);
+    } else {
+      this.characters$ = this.charactersService.getAll();
+    }
+  }
 }
