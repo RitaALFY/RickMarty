@@ -3,9 +3,11 @@ import {Episode, EpisodeHttp} from "./episode.model";
 export  interface CharacterHttp{
   id: number,
   name: string,
-  status: string,
   species: string,
   image: string,
+  type:string,
+  gender: string,
+  status: string,
   episode: EpisodeHttp
 
 
@@ -15,6 +17,9 @@ export interface Character{
   name: string,
   species: string,
   image: string,
+  type:string,
+  gender: string,
+  status: string,
   episode: string[]
 
 
@@ -30,6 +35,11 @@ export namespace Character {
       name: characterHttp.name,
       species: characterHttp.species,
       image: characterHttp.image,
+      type:characterHttp.type,
+      gender: characterHttp.gender,
+      status: characterHttp.status,
+
+
       episode: Episode.fromEpisodeHttpToEpisode(characterHttp.episode),
     }
   }
@@ -42,6 +52,9 @@ export namespace Character {
         name: `Character: ${i}`,
         species: "Human",
         image: `Character: ${i}.jpg`,
+        type: `Character: ${i}`,
+        gender: `Character: ${i}`,
+        status:`Character: ${i}`,
         episode: [`https://rickandmortyapi.com/api/episode/${i}`]
       });
     }

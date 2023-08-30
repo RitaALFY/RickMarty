@@ -4,7 +4,9 @@
       <div class="card-body text-center">
         <h5 class="card-title"> <i><b>{{ character.name }}</b> </i>- # {{character.id}}</h5>
         <p class="card-text"> {{ character.species }}</p>
-<!--        <p class="card-text"> {{ character.status }} </p>-->
+        <p class="card-text"> <b>Type : </b> ( {{ character.type }} )</p>
+        <p class="card-text"> <b> Gender:  </b> {{ character.gender }} </p>
+        <!--        <p class="card-text"> {{ character.status }} </p>-->
 
         <img [src]="character.image" class="card-img-top" alt="character image">
       </div>

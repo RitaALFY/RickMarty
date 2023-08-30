@@ -27,6 +27,10 @@ this.characterForm = this.fb.group({
   species:[this.characterToUpdate?.species || '', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
   episode:[this.characterToUpdate?.episode || '', [Validators.required, Validators.minLength(2), Validators.maxLength(1000)]],
   image:[this.characterToUpdate?.image || '', [Validators.required]],
+  type:[this.characterToUpdate?.type || '', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
+
+  gender:[this.characterToUpdate?.gender || '', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
+  status:[this.characterToUpdate?.status || '', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
 
 
 })
@@ -34,12 +38,15 @@ this.characterForm = this.fb.group({
 
   onSubmitForm() {
     if(this.characterForm.valid){
-      const {name, species, episode,image} = this.characterForm.value
+      const {name, species, episode,image, type, gender, status} = this.characterForm.value
       const character: Omit<Character, 'id'> ={
         name,
         species,
         episode,
-        image
+        image,
+        type,
+        gender,
+        status
 
 
       }
